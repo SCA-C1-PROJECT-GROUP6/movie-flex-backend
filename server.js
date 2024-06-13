@@ -20,6 +20,7 @@ app.use(cors({
 app.use(express.json())
 app.use(cookieParser());
 app.use(morgan('dev'))
+app.use(express.urlencoded({extended: false}))
 app.use('/api/users', userRoute)
 app.use('/api/movies', movieRoute)
 app.use(errorHandler)
