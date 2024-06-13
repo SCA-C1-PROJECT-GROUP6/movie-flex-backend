@@ -2,8 +2,10 @@ import express from 'express'
 import dotenv from 'dotenv'
 import DBconnect from './db.js'
 import morgan from 'morgan'
+import cors from 'cors'
 import cookieParser from 'cookie-parser';
 import userRoute from './routes/userRoutes.js'
+import movieRoute from './routes/movieRoute.js'
 dotenv.config()
 import { errorHandler } from './middleware/errorHandler.js'
 
@@ -11,10 +13,12 @@ const PORT = process.env.PORT || 8888
 
 const app = express()
 
+app.use(cors({origin: "http://localhost:5173"}));//the react url here please
 app.use(express.json())
 app.use(cookieParser());
 app.use(morgan('dev'))
 app.use('/api/users', userRoute)
+app.use('/api/movies', movieRoute)
 app.use(errorHandler)
 
 
