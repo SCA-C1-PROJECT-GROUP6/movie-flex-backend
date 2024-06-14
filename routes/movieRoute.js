@@ -1,27 +1,13 @@
 import express from 'express';
-import { getPopularMovies, searchMovies } from '../controllers/movieController.js';
+import { createMovie, getAllMovies, searchMovies, submitRating } from '../controllers/movieController.js';
+import authMiddleware from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-// Route to get popular movies
-router.get('/popular', async (req, res) => {
-  try {
-    const movies = await getPopularMovies();
-    res.json(movies);
-  } catch (error) {
-    res.status(500).json({ message: 'Error fetching popular movies' });
-  }
-});
+router.post('/createmovie', createMovie);  
+router.get('/getallmovies', getAllMovies )
+router.get('/search', searchMovies);
+router.post('/rate', authMiddleware, submitRating);
 
-// Route to search for movies
-router.get('/search', async (req, res) => {
-  try {
-    const { query } = req.query;
-    const movies = await searchMovies(query);
-    res.json(movies);
-  } catch (error) {
-    res.status(500).json({ message: 'Error searching movies' });
-  }
-});
 
 export default router;

@@ -17,10 +17,12 @@ app.use(cors({
     credentials: true,
     origin: 'http://localhost:5173'
   }));
+
 app.use(express.json())
 app.use(cookieParser());
 app.use(morgan('dev'))
 app.use(express.urlencoded({extended: false}))
+
 app.use('/api/users', userRoute)
 app.use('/api/movies', movieRoute)
 app.use(errorHandler)
