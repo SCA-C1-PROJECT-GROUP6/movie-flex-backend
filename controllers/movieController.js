@@ -36,28 +36,60 @@ const getAllMovies = asyncHandler(async (req, res) => {
 
 
 //searching for a movie by title or genre
+// const searchMovies = asyncHandler(async (req, res) => {
+//   const { query } = req.query;
+
+//   if (!query) {
+//     res.status(400);
+//     return res.json({ message: "Please provide a search query" });
+//   }
+
+//   // Perform a case-insensitive search on the title and description fields
+//   const movies = await Movie.find({
+//     $or: [
+//       { title: { $regex: query, $options: "i" } },
+//       { genre: { $regex: query, $options: "i" } },
+//     ],
+//   });
+
+//   if (movies.length === 0) {
+//     res.status(404);
+//     return res.json({ message: "Movie not found" });
+//   }
+
+//   res.json(movies);
+// });
+
+
 const searchMovies = asyncHandler(async (req, res) => {
   const { query } = req.query;
+  console.log("Search query received:", query);
 
   if (!query) {
     res.status(400);
     return res.json({ message: "Please provide a search query" });
   }
 
-  // Perform a case-insensitive search on the title and description fields
-  const movies = await Movie.find({
-    $or: [
-      { title: { $regex: query, $options: "i" } },
-      { genre: { $regex: query, $options: "i" } },
-    ],
-  });
+  try {
+    // Perform a case-insensitive search on the title and genre fields
+    const movies = await Movie.find({
+      $or: [
+        { title: { $regex: query, $options: "i" } },
+        { genre: { $regex: query, $options: "i" } },
+      ],
+    });
 
-  if (movies.length === 0) {
-    res.status(404);
-    return res.json({ message: "Movie not found" });
+    if (movies.length === 0) {
+      res.status(404);
+      return res.json({ message: "Movie not found" });
+    }
+
+    res.json(movies);
+  } catch (error) {
+    console.error("Error searching movies:", error);
+    res.status(500);
+    res.json({ message: "Server error" });
   }
-
-  res.json(movies);
 });
 
 
