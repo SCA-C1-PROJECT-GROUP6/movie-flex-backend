@@ -19,7 +19,8 @@ const app = express()
 
 //   }));
 
-  app.use(cors({origin:['https:// 666cc6c50c30bb4afe236965--splendorous-biscuit-7dffcl.netlify.app','http://localhost:5173']}))
+  app.use(cors({credentials: true,
+    origin:['https:// 666cc6c50c30bb4afe236965--splendorous-biscuit-7dffcl.netlify.app','http://localhost:5173']}))
 
 app.use(express.json())
 app.use(cookieParser());
