@@ -22,11 +22,12 @@ const app = express();
 
 app.use(
   cors({
-    // credentials: true,
+    credentials: true,
     origin: [
-      "*",
+      // "*",
       // "https://666cc6c50c30bb4afe236965--splendorous-biscuit-7dffcl.netlify.app",
-    "https://movie-flex-sca-project-c1-g6.netlify.app/",
+    // "https://movie-flex-sca-project-c1-g6.netlify.app/",
+    "https://scaacademy-movie-flex-project-g6.netlify.app/",
       // "http://localhost:5173",
     ],
   })
