@@ -28,8 +28,8 @@ app.use(
       // "https://666cc6c50c30bb4afe236965--splendorous-biscuit-7dffcl.netlify.app",
     // "https://movie-flex-sca-project-c1-g6.netlify.app/",
     // "https://scaacademy-movie-flex-project-g6.netlify.app/",
-    "https://sca-academy-at-project-c1-g6.netlify.app/"
-      // "http://localhost:5173",
+    "https://sca-academy-at-project-c1-g6.netlify.app/",
+      "http://localhost:5173",
     ],
   })
 );
